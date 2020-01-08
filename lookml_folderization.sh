@@ -9,13 +9,13 @@ NC='\033[0m' # No Color
 echo $REPO
 
 
-# -i to update file ('' for no backup) /g = global replace
+# negative lookahead to ignore project import files (anything that begins with //)
 function modify_includes {
-    sed -i '' -E 's/(include.*:.*")(.*)(\.explore.*")/\1\/explores\/\2\3/g' $1
-    sed -i '' -E 's/(include.*:.*")(.*)(\.view.*")/\1\/views\/\2\3/g' $1
-    sed -i '' -E 's/(include.*:.*")(.*)(\.model.*")/\1\/models\/\2\3/g' $1
-    sed -i '' -E 's/(include.*:.*")(.*)(\.dashboard.*")/\1\/dashboards\/\2\3/g' $1
-    sed -i '' -E 's/(file.*:.*")(.*)(\.*json.*")/\1\/json\/\2\3/g' $1
+    perl -pi -e 's/(include.*:.*")(?!\/\/)(.*)(\.explore.*")/\1\/explores\/\2\3/g' $1
+    perl -pi -e 's/(include.*:.*")(?!\/\/)(.*)(\.view.*")/\1\/views\/\2\3/g' $1
+    perl -pi -e 's/(include.*:.*")(?!\/\/)(.*)(\.model.*")/\1\/models\/\2\3/g' $1
+    perl -pi -e 's/(include.*:.*")(?!\/\/)(.*)(\.dashboard.*")/\1\/dashboards\/\2\3/g' $1
+    perl -pi -e 's/(file.*:.*")(?!\/\/)(.*)(\.*json.*")/\1\/json\/\2\3/g' $1
     perl -pi -e 's/(include.*:.*?")(?!.*\.model|.*\.explore|.*\.view|.*\.dashboard)(.*")/\1\/other\/\2/g' $1 # used for other lkml files - excludes explore, view, model, and dashboard)
 }
 
@@ -38,7 +38,7 @@ fi
 if [[ $ext_all = *md* ]]
 then
     printf "${GREEN} Moving documentation files ${NC} \n"
-    mkdir $REPO/md && mv -v $REPO/*.md $REPO/md/
+    mkdir $REPO/documents && mv -v $REPO/*.md $REPO/documents/
 fi
 
 
@@ -120,6 +120,4 @@ fi
 
 
 printf "${GREEN} All files have been moved and file references updated ${NC} \n"
-
-
 

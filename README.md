@@ -10,7 +10,7 @@ In the folder-land project, includes statements can be relative, or absolute pat
 - bar.view.lkml
 - hello_world.dashboard.lookml
 ```
-this script will modify the project to this folder situation:
+This script will modify the project to this folder situation:
 ```
 - models/
   - master.model.lkml
@@ -26,9 +26,9 @@ In the pre-folder situation, master.model.lkml’s include statement would look 
 ## Minimum Requirements
 - The project will need to be in [new LookML](https://discourse.looker.com/t/new-lookml-deep-dive-into-the-new-syntax-and-the-new-ide/3539)
 - Include statements are defined in a single line
-- Include statements require qualifying lkml file types, e.g:
-  - these will work: `include: "pizza.view` , `include: "pizza.view.lkml"`, `include: "pizza*.view"`
-  - this will not work: `include: "pizza*"`
+- Include statements require qualifying lkml file types with double quotes, e.g:
+  - these will work: `include: "pizza.view"` , `include: "pizza.view.lkml"`, `include: "pizza*.view"`
+  - these will not work: `include: "pizza*"` , `include: pizza.view`
 
 
 ## Steps
