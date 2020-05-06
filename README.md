@@ -25,8 +25,20 @@ In the pre-folder situation, master.model.lkml’s include statement would look 
 
 ## Minimum Requirements
 - The project will need to be in [new LookML](https://discourse.looker.com/t/new-lookml-deep-dive-into-the-new-syntax-and-the-new-ide/3539)
-- Include statements are defined in a single line
-- Include statements require qualifying lkml file types with double quotes, e.g:
+- Include statements are defined in a single line, e.g.:
+  - this will work:
+    ```
+    include: "pizza.view" # some comments here
+    ```
+  - this will not work:
+    ```
+    include:
+    # some comments
+    # here
+    "pizza.view"
+    ```
+
+- Include statements require qualifying lkml file types with double quotes, e.g.:
   - these will work: `include: "pizza.view"` , `include: "pizza.view.lkml"`, `include: "pizza*.view"`
   - these will not work: `include: "pizza*"` , `include: pizza.view`
 
