@@ -46,9 +46,8 @@ In the pre-folder situation, master.model.lkml’s include statement would look 
 ## Steps
 1. Clone your git repo locally
 2. Checkout your developer branch (make sure it's up-to-date with master)
-3. Update the `REPO=/path/to/repo` to the directory of your git project
-4. Run this script
-5. Commit the change and push to origin/developer branch
-6. In Looker, Pull Remote Changes
-7. Validate LookML in Project
-8. Deploy to Production
+3. Run this script. Use the directory of your git project as the 1st argument, e.g. `./lookml_folderization.sh /path/to/repo`
+4. Commit the change and push to origin/developer branch
+5. In Looker, Pull Remote Changes
+6. Validate LookML in Project
+7. Deploy to Production
